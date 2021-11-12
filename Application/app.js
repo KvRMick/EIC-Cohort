@@ -2,13 +2,12 @@
 var debug = require('debug');
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var apiRouter = require("./routes/api")()
 
 var server; 
 var app = express();
@@ -26,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/users', users);
+app.use('/api', apiRouter);
 app.use('/', index);
 
 
@@ -44,7 +43,7 @@ app.use(function (req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
-        res.render('Error', {error: err.status});
+        res.render('error', {error: err.status});
     });
 }
 
@@ -52,7 +51,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
-    res.render('Error', {error: err.status});
+    res.render('error', {error: err.status});
 });
 
 app.set('port', process.env.PORT || 3000);
