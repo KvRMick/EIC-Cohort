@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var 
 var customers = require('../public/mockdata/customers.json');
 
 module.exports =  function () {
