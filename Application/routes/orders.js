@@ -1,7 +1,7 @@
 ﻿'use strict';
 var express = require('express');
 var router = express.Router();
-var orders = require("../mockdata/orders.json");
+var orders = require("../public/mockdata/orders.json");
 
 module.exports = function () {
 	router
