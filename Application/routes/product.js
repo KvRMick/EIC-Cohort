@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var products = require("../mockdata/products.json");
+var products = require("../public/mockdata/products.json");
 
 module.exports = function () {
 	router
